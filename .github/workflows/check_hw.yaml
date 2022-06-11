@@ -18,8 +18,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install requirements.txt
       - name: Run flake8
-          run: flake8 .
+        run: flake8 .
       - name: Run mypy
-          run: mypy .
+        run: mypy .
       - name: Run pytest
-          run: pytest tests/test_quadratic_equation.py
+        run: pytest tests/test_quadratic_equation.py
