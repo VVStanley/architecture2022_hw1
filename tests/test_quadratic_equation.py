@@ -12,6 +12,9 @@ from src.quadratic_equation import QuadraticEquation
 class TestQuadraticEquation:
     """Тестируем решение квадратного уравнения"""
 
+    def test_quadratic_equation_has_two_roots(self) -> None:
+        """Квадратное уравнение имеет два корня"""
+
     def test_discriminant_lower_than_zero(self) -> None:
         """Проверяем что при дискриминанте меньше нуля решений нет"""
         a = 1

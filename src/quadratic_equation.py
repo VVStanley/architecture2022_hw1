@@ -42,3 +42,7 @@ class QuadraticEquation:
         """Если коэффициент a равен нулю у уравнения нет решений"""
         if self._a < abs(e):
             raise ACoefficientEqualZeroError
+
+    def solve(self):
+        """Решаем квадратное уравнение"""
+        pass
