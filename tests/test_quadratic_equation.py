@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.exceptions import ACoefficientEqualZeroException
+from src.exceptions import ACoefficientEqualZeroError
 from src.quadratic_equation import QuadraticEquation
 
 
@@ -15,5 +15,10 @@ class TestQuadraticEquation:
         b = 1
         c = 1
 
-        with pytest.raises(ACoefficientEqualZeroException) as _:
+        with pytest.raises(ACoefficientEqualZeroError) as exc_info:
             QuadraticEquation(a, b, c)
+
+        assert exc_info.typename == "ACoefficientEqualZeroError"
+        assert str(exc_info.value) == (
+            "Старший коэффициент не может быть равен нулю"
+        )

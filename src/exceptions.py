@@ -1,4 +1,4 @@
-class ACoefficientEqualZeroException(Exception):
+class ACoefficientEqualZeroError(Exception):
     """Исключение возникающее если коэффициент a равен нулю"""
 
     def __init__(self) -> None:
