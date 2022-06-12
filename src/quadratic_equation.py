@@ -1,4 +1,5 @@
 """Решение квадратного уравнения"""
+
 from src.exceptions import (
     ACoefficientEqualZeroError,
     DiscriminantLowerThanZeroError,
@@ -25,13 +26,12 @@ class QuadraticEquation:
         self._a = a
         self._check_coefficient_a(e)
 
-        self._d = None
-        self._calc_discriminant()
+        self._d = self._calc_discriminant()
         self._check_discriminant()
 
-    def _calc_discriminant(self) -> None:
-        """Высчитываем дисткриминант"""
-        self._d = self._b * self._b - 4 * self._a * self._c
+    def _calc_discriminant(self) -> float:
+        """Высчитываем дисткриминант D = b*b - 4*a*c"""
+        return self._b * self._b - 4 * self._a * self._c
 
     def _check_discriminant(self) -> None:
         """Дискриминант не может быть меньше нуля"""
