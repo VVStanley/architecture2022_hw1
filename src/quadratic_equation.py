@@ -1,4 +1,5 @@
 """Решение квадратного уравнения"""
+from math import sqrt
 
 from src.exceptions import (
     ACoefficientEqualZeroError,
@@ -29,6 +30,12 @@ class QuadraticEquation:
         self._d = self._calc_discriminant()
         self._check_discriminant()
 
+    def solve(self) -> tuple:
+        """Решаем квадратное уравнение"""
+        x1 = self._calc_x1()
+        x2 = self._calc_x2()
+        return x1, x2
+
     def _calc_discriminant(self) -> float:
         """Высчитываем дисткриминант D = b*b - 4*a*c"""
         return self._b * self._b - 4 * self._a * self._c
@@ -43,6 +50,10 @@ class QuadraticEquation:
         if abs(self._a) < e:
             raise ACoefficientEqualZeroError
 
-    def solve(self) -> tuple:
-        """Решаем квадратное уравнение"""
-        pass
+    def _calc_x1(self) -> float:
+        """Высчитываем первый корень"""
+        return - self._b + sqrt(self._d) / 2 * self._a
+
+    def _calc_x2(self) -> float:
+        """Высчитываем второй корень"""
+        return - self._b - sqrt(self._d) / 2 * self._a
