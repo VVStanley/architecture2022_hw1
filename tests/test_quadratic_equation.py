@@ -5,12 +5,40 @@ import pytest
 from src.exceptions import (
     ACoefficientEqualZeroError,
     DiscriminantLowerThanZeroError,
+    WrongTypesArgumentsError,
 )
 from src.quadratic_equation import QuadraticEquation
 
 
 class TestQuadraticEquation:
     """Тестируем решение квадратного уравнения ax^2 + bx + c = 0"""
+
+    def test_wrong_type_arguments(self) -> None:
+        """Проверяем на передачу не верных типов данных"""
+        a = "qwe"
+        b = None
+        c = {
+            "python": "best of the best",
+            "otus": 100500
+        }
+
+        with pytest.raises(WrongTypesArgumentsError) as exc_info:
+            QuadraticEquation(a, b, c)  # type: ignore
+
+        assert exc_info.typename == "WrongTypesArgumentsError"
+        assert str(exc_info.value) == "Аргумент может быть только числом"
+
+    def test_type_arguments_is_string(self) -> None:
+        """Тестируем на передачу значений строками"""
+        a = "1"
+        b = "2"
+        c = "1"
+
+        quadratic_equation = QuadraticEquation(a, b, c)  # type: ignore
+        x1, x2 = quadratic_equation.solve()
+
+        assert x1 == x2
+        assert x2 == -2
 
     def test_quadratic_equation_has_one_roots(self) -> None:
         """Квадратное уравнение имеет один корень"""

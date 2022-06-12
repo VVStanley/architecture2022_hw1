@@ -12,3 +12,11 @@ class DiscriminantLowerThanZeroError(Exception):
     def __init__(self) -> None:
         message = "Дискрименант меньше нуля"
         super().__init__(message)
+
+
+class WrongTypesArgumentsError(Exception):
+    """Исключение возникающее если передали не верные типы аргументов"""
+
+    def __init__(self) -> None:
+        message = "Аргумент может быть только числом"
+        super().__init__(message)
