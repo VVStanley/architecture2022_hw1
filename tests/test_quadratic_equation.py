@@ -25,7 +25,10 @@ class TestQuadraticEquation:
         assert x2 == -2
 
     def test_quadratic_equation_has_two_roots(self) -> None:
-        """Квадратное уравнение имеет два корня"""
+        """Квадратное уравнение имеет два корня
+
+        x^2-1 = 0
+        """
         a = 1
         b = 0
         c = -1
@@ -37,7 +40,10 @@ class TestQuadraticEquation:
         assert x2 == -1
 
     def test_discriminant_lower_than_zero(self) -> None:
-        """Проверяем что при дискриминанте меньше нуля решений нет"""
+        """Проверяем что при дискриминанте меньше нуля решений нет
+
+        x^2+1 = 0
+        """
         a = 1
         b = 0
         c = 1
@@ -47,6 +53,20 @@ class TestQuadraticEquation:
 
         assert exc_info.typename == "DiscriminantLowerThanZeroError"
         assert str(exc_info.value) == "Дискрименант меньше нуля"
+
+    def test_discriminant_with_epsilon(self) -> None:
+        """Проверка дискриминант с погрешностью
+
+        если дискриминант не ноль, но меньше заданного epsilon
+        """
+        a = 0.00001
+        b = 0.00001
+        c = 0.0000001
+
+        quadratic_equation = QuadraticEquation(a, b, c)
+        x1, x2 = quadratic_equation.solve()
+
+        assert x1 == x2
 
     def test_coefficient_a_equal_zero(self) -> None:
         """Проверим, что для коэффициента a равным нулю решений нет"""
