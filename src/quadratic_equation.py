@@ -28,7 +28,7 @@ class QuadraticEquation:
         self._check_coefficient_a(e)
 
         self._d = self._calc_discriminant()
-        self._check_discriminant()
+        self._check_discriminant(e)
 
     def solve(self) -> tuple:
         """Решаем квадратное уравнение"""
@@ -40,10 +40,14 @@ class QuadraticEquation:
         """Высчитываем дисткриминант D = b*b - 4*a*c"""
         return self._b * self._b - 4 * self._a * self._c
 
-    def _check_discriminant(self) -> None:
-        """Дискриминант не может быть меньше нуля"""
+    def _check_discriminant(self, e: float) -> None:
+        """Дискриминант не может быть меньше нуля
+        и если дискриминант меньше погрешности e то приравниваем его к нулю
+        """
         if self._d < 0:
             raise DiscriminantLowerThanZeroError
+        elif self._d != 0 and self._d < e:
+            self._d = 0
 
     def _check_coefficient_a(self, e: float) -> None:
         """Если коэффициент a равен нулю у уравнения нет решений"""
