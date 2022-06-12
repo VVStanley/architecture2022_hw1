@@ -4,6 +4,7 @@ from math import sqrt
 from src.exceptions import (
     ACoefficientEqualZeroError,
     DiscriminantLowerThanZeroError,
+    WrongTypesArgumentsError,
 )
 
 
@@ -22,13 +23,21 @@ class QuadraticEquation:
         :param c: Свободный член
         :param e: Погрешность для чисел с плавоющей точкой
         """
-        self._c = c
-        self._b = b
-        self._a = a
+        self._c = self._check_types_argument(c)
+        self._b = self._check_types_argument(b)
+        self._a = self._check_types_argument(a)
         self._check_coefficient_a(e)
 
         self._d = self._calc_discriminant()
         self._check_discriminant(e)
+
+    @staticmethod
+    def _check_types_argument(arg: float) -> float:
+        """Приводим и проверяем тип аргумента"""
+        try:
+            return float(arg)
+        except (ValueError, TypeError):
+            raise WrongTypesArgumentsError
 
     def solve(self) -> tuple:
         """Решаем квадратное уравнение"""
