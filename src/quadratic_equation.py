@@ -43,6 +43,6 @@ class QuadraticEquation:
         if abs(self._a) < e:
             raise ACoefficientEqualZeroError
 
-    def solve(self):
+    def solve(self) -> tuple:
         """Решаем квадратное уравнение"""
         pass

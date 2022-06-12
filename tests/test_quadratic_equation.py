@@ -10,10 +10,31 @@ from src.quadratic_equation import QuadraticEquation
 
 
 class TestQuadraticEquation:
-    """Тестируем решение квадратного уравнения"""
+    """Тестируем решение квадратного уравнения ax^2 + bx + c = 0"""
+
+    def test_quadratic_equation_has_one_roots(self) -> None:
+        """Квадратное уравнение имеет один корень"""
+        a = 1
+        b = 2
+        c = 1
+
+        quadratic_equation = QuadraticEquation(a, b, c)
+        x1, x2 = quadratic_equation.solve()
+
+        assert x1 == x2
+        assert x2 == -1
 
     def test_quadratic_equation_has_two_roots(self) -> None:
         """Квадратное уравнение имеет два корня"""
+        a = 1
+        b = 0
+        c = -1
+
+        quadratic_equation = QuadraticEquation(a, b, c)
+        x1, x2 = quadratic_equation.solve()
+
+        assert x1 == 1
+        assert x2 == -1
 
     def test_discriminant_lower_than_zero(self) -> None:
         """Проверяем что при дискриминанте меньше нуля решений нет"""
