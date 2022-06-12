@@ -22,7 +22,7 @@ class TestQuadraticEquation:
         x1, x2 = quadratic_equation.solve()
 
         assert x1 == x2
-        assert x2 == -1
+        assert x2 == -2
 
     def test_quadratic_equation_has_two_roots(self) -> None:
         """Квадратное уравнение имеет два корня"""
